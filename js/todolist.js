@@ -1,9 +1,9 @@
-$(function() {
+$(function () {
     // alert(11);
     // 1. 按下回车 把完整数据 存储到本地存储里面
     // 存储的数据格式  var todolist = [{title: "xxx", done: false}]
     load();
-    $("#title").on("keydown", function(event) {
+    $("#title").on("keydown", function (event) {
         if (event.keyCode === 13) {
             if ($(this).val() === "") {
                 alert("请输入您要的操作");
@@ -12,7 +12,10 @@ $(function() {
                 var local = getDate();
                 // console.log(local);
                 // 把local数组进行更新数据 把最新的数据追加给local数组
-                local.push({ title: $(this).val(), done: false });
+                local.push({
+                    title: $(this).val(),
+                    done: false
+                });
                 // 把这个数组local 存储给本地存储
                 saveDate(local);
                 // 2. toDoList 本地存储数据渲染加载到页面
@@ -22,8 +25,8 @@ $(function() {
         }
     });
     // 3. toDoList 删除操作
-    $("ol, ul").on("click", "a", function() {
-        // alert(11);
+    $("ol, ul").on("click", "a", function () {
+        alert(11);
         // 先获取本地存储
         var data = getDate();
         console.log(data);
@@ -37,7 +40,7 @@ $(function() {
         load();
     });
     // 4. toDoList 正在进行和已完成选项操作
-    $("ol, ul").on("click", "input", function() {
+    $("ol, ul").on("click", "input", function () {
         // alert(11);
         // 先获取本地存储的数据
         var data = getDate();
@@ -77,7 +80,7 @@ $(function() {
         var todoCount = 0; // 正在进行的个数
         var doneCount = 0; // 已经完成的个数
         // 遍历这个数据
-        $.each(data, function(i, n) {
+        $.each(data, function (i, n) {
             // console.log(n);
             if (n.done) {
                 $("ul").prepend("<li><input type='checkbox' checked='checked' > <p>" + n.title + "</p> <a href='javascript:;' id=" + i + " ></a></li>");
